@@ -1,0 +1,10 @@
+{
+	"autodeskProduct":	"Fusion360",
+	"type":	"script",
+	"author":	"Leehyungjin",
+	"description":	{
+		"Fusion360":	"center of mass add-in"
+	},
+	"supportedOS":	"windows|mac",
+	"editEnabled":	true
+}
