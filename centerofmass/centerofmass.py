@@ -20,15 +20,16 @@ def run(context):
             name = occs.component.name
             ui.messageBox(f'component name : {name}\nx : {round(center_of_mass[0],5)}m, y : {round(center_of_mass[1],5)}m, z : {round(center_of_mass[2],5)}m\nx : {round(center_of_mass[0]*1000,5)}mm, y : {round(center_of_mass[1]*1000,5)}mm, z : {round(center_of_mass[2]*1000,5)}mm', title)
             try:
-                selection = occs.component.bRepBodies.item(0)
-                bodies = adsk.core.ObjectCollection.create()
-                bodies.add(selection)
-                vector = adsk.core.Vector3D.create(-100*round(center_of_mass[0],5), -100*round(center_of_mass[1],5), -100*round(center_of_mass[2],5))
-                transform = adsk.core.Matrix3D.create()
-                transform.translation = vector
-                moveFeats = occs.component.features.moveFeatures
-                moveFeatureInput = moveFeats.createInput(bodies, transform)
-                moveFeats.add(moveFeatureInput)
+                for i in range(0,occs.component.bRepBodies.count):
+                    selection = occs.component.bRepBodies.item(i)
+                    bodies = adsk.core.ObjectCollection.create()
+                    bodies.add(selection)
+                    vector = adsk.core.Vector3D.create(-100*round(center_of_mass[0],5), -100*round(center_of_mass[1],5), -100*round(center_of_mass[2],5))
+                    transform = adsk.core.Matrix3D.create()
+                    transform.translation = vector
+                    moveFeats = occs.component.features.moveFeatures
+                    moveFeatureInput = moveFeats.createInput(bodies, transform)
+                    moveFeats.add(moveFeatureInput)
             except:
                 pass
     except:
